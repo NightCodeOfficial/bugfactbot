@@ -126,6 +126,3 @@ log_message("Your log message here")
 - beautifulsoup4 4.12.0+
 - python-dotenv 1.0.0+
 
-## License
-
-This project is open source and available under the MIT License. 
