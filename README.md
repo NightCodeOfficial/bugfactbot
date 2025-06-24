@@ -1,128 +1,108 @@
 # Bug of the Week Discord Bot
 
-A modern Discord bot that fetches and displays the latest bug facts from [bugoftheweek.com](https://bugoftheweek.com) with beautiful embeds and images.
+A Discord bot that fetches and displays the latest bug information from the Bug of the Week RSS feed.
 
 ## Features
 
-- 🐛 Fetch latest bug information from RSS feed
-- 🖼️ Display bug images in Discord embeds
-- 📱 Both slash commands and prefix commands
-- 📊 Comprehensive logging system
-- 🛡️ Error handling and user-friendly messages
-- 🎨 Beautiful Discord embeds with proper formatting
-
-## Commands
-
-### Slash Commands
-- `/bugfact` - Get the latest bug fact with image
-
-### Prefix Commands
-- `!bugfact` or `!bf` - Get the latest bug fact with image
-- `!help` or `!h` - Show help information
+- Fetches latest bug information from RSS feed
+- Displays bug facts in Discord channels
+- Clean and formatted output
+- Automatic command syncing
 
 ## Setup
 
-### 1. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+### Prerequisites
 
-### 2. Create Discord Bot
-1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
+- Python 3.8 or higher
+- A Discord bot token
+- Git (optional, for version control)
+
+### Installation
+
+1. **Clone or download the repository**
+   ```bash
+   git clone <repository-url>
+   cd bug_of_the_week
+   ```
+
+2. **Create a virtual environment**
+   ```bash
+   # On Windows
+   python -m venv venv
+   
+   # On macOS/Linux
+   python3 -m venv venv
+   ```
+
+3. **Activate the virtual environment**
+   ```bash
+   # On Windows (Command Prompt)
+   venv\Scripts\activate
+   
+   # On Windows (PowerShell)
+   venv\Scripts\Activate.ps1
+   
+   # On macOS/Linux
+   source venv/bin/activate
+   ```
+
+4. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Create environment file**
+   Create a `.env` file in the project root with your Discord bot token:
+   ```
+   DISCORD_TOKEN=your_discord_bot_token_here
+   ```
+
+6. **Run the bot**
+   ```bash
+   python bot.py
+   ```
+
+### Discord Bot Setup
+
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
 2. Create a new application
 3. Go to the "Bot" section
 4. Create a bot and copy the token
-5. Enable the following intents:
-   - Message Content Intent
-   - Server Members Intent
+5. Add the bot to your server with appropriate permissions
+6. Paste the token in your `.env` file
 
-### 3. Configure Environment
-Create a file called `.env`  in the project root:
-```env
-DISCORD_TOKEN=your_discord_bot_token_here
-```
+## Usage
 
-### 4. Invite Bot to Server
-Use this URL (replace `YOUR_BOT_CLIENT_ID` with your bot's client ID):
-```
-https://discord.com/api/oauth2/authorize?client_id=YOUR_BOT_CLIENT_ID&permissions=2048&scope=bot%20applications.commands
-```
+Once the bot is running, you can use the following commands:
 
-### 5. Run the Bot
-```bash
-python bot.py
-```
+- `bb!bugfact` - Get the latest bug fact
+- `bb!help` - Show help information
 
 ## Project Structure
 
 ```
 bug_of_the_week/
 ├── bot.py                 # Main bot file
-├── config.py              # Configuration and environment variables
-├── bug_info_fetcher.py    # RSS feed fetching and data cleaning
-├── logger.py              # Logging utility
+├── bug_info_fetcher.py    # RSS feed fetcher
+├── config.py              # Configuration settings
+├── cogs/                  # Bot command modules
+│   ├── bug_commands.py
+│   └── general_commands.py
+├── logs/                  # Log files
 ├── requirements.txt       # Python dependencies
-├── cogs/
-│   ├── __init__.py
-│   └── bug_commands.py    # Bot commands
-├── logs/                  # Log files (created automatically)
-└── README.md
+├── .gitignore            # Git ignore rules
+└── README.md             # This file
 ```
 
-## Features in Detail
+## Contributing
 
-### Data Fetching
-- Fetches latest bug information from RSS feed
-- Cleans HTML content for better readability
-- Extracts images for Discord embeds
-- Saves data to JSON files for caching
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-### Logging
-- Comprehensive logging system
-- Daily log files in `logs/` directory
-- Tracks all bot activities and errors
+## License
 
-### Error Handling
-- Graceful error handling for network issues
-- User-friendly error messages
-- Fallback responses when data is unavailable
-
-## Usage Examples
-
-### Basic Usage
-```
-!bugfact
-```
-or
-```
-/bugfact
-```
-
-### Help Command
-```
-!help
-```
-
-## Development
-
-### Adding New Commands
-1. Create a new cog in the `cogs/` directory
-2. Add the cog to `bot.py` in the `initial_extensions` list
-3. Use the `@commands.command()` or `@app_commands.command()` decorators
-
-### Logging
-Use the logger throughout the project:
-```python
-from logger import log_message
-
-log_message("Your log message here")
-```
-
-## Requirements
-
-- Python 3.8+
-- discord.py 2.3.0+
-- feedparser 6.0.0+
-- beautifulsoup4 4.12.0+
-- python-dotenv 1.0.0+
+This project is open source and available under the [MIT License](LICENSE).
 
